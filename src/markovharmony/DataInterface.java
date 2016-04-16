@@ -1,5 +1,6 @@
 package markovharmony;
 
-public class DataInterface {
-
+public class DataInterface 
+{
+	
 }

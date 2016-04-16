@@ -1,5 +1,6 @@
 package markovharmony;
 
-public class UI {
+public class UI 
+{
 
 }

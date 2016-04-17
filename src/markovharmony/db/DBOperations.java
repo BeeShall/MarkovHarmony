@@ -1,7 +1,6 @@
 package markovharmony.db;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.bson.Document;
 
@@ -42,13 +41,13 @@ public class DBOperations {
 		}		
 	}
 	
-	public Collection<Collection<Integer>> getAllProgressions(){
-		Collection<Collection<Integer>> progressions = new ArrayList<Collection<Integer>>();
+	public ArrayList<ArrayList<Integer>> getAllProgressions(){
+		ArrayList<ArrayList<Integer>> progressions = new ArrayList<ArrayList<Integer>>();
 		FindIterable<Document> iterable = songs.find();
 		iterable.forEach(new Block<Document>() {
 		    @Override
 		    public void apply(final Document document) {
-		       Collection<Integer> chords = (ArrayList<Integer>)document.get("CHORDS");	
+		       ArrayList<Integer> chords = (ArrayList<Integer>)document.get("CHORDS");	
 		       
 		       progressions.add(chords);
 		    }
@@ -56,8 +55,8 @@ public class DBOperations {
 		return progressions;
 	}
 	
-	public Collection<Collection<Integer>> getFilteredData(String artist, Genre genre, int year, String country, Mode mode){
-		Collection<Collection<Integer>> progressions = new ArrayList<Collection<Integer>>();
+	public ArrayList<ArrayList<Integer>> getFilteredData(String artist, Genre genre, int year, String country, Mode mode){
+		ArrayList<ArrayList<Integer>> progressions = new ArrayList<ArrayList<Integer>>();
 		Document document = new Document();
 		if(artist!=null) document.append("ARTIST", artist); 
 		if(genre != null) document.append("GENRE", genre.name()); 
@@ -68,7 +67,7 @@ public class DBOperations {
 		iterable.forEach(new Block<Document>() {
 		    @Override
 		    public void apply(final Document document) {
-		       Collection<Integer> chords = (ArrayList<Integer>)document.get("CHORDS");
+		       ArrayList<Integer> chords = (ArrayList<Integer>)document.get("CHORDS");
 		       
 		       progressions.add(chords);
 		    }

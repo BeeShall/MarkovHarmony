@@ -16,7 +16,7 @@ import java.util.Collection;
 public class FileReader {
 
 	private InputStream is;
-	private static Collection<dbElement> dbElements;
+	private static ArrayList<dbElement> dbElements;
 	
 	public static void main(String[] args){		
 			InputStream is;
@@ -78,7 +78,7 @@ public class FileReader {
 	}
 	
 	private Integer[] getChords(String[] data){
-		Collection<Integer> chords = new ArrayList<Integer>();
+		ArrayList<Integer> chords = new ArrayList<Integer>();
 		for(int i=0;i<data.length;i++){
 			if(i ==0) chords.add(Integer.parseInt((data[i].trim().substring(1))));
 			else if(i==data.length-1) chords.add(Integer.parseInt((data[i].trim().substring(0, data[i].length()-2))));

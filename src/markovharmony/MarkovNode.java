@@ -2,10 +2,6 @@ package markovharmony;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Enumeration;
-<<<<<<< HEAD
-import markovharmony.db.Chords;
-=======
->>>>>>> 57a8b435fd0e51049675d098618db5e5e69b204e
 import java.util.ArrayList;
 import java.util.Random;
 

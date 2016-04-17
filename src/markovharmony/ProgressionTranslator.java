@@ -7,16 +7,17 @@ public class ProgressionTranslator
 	{
 		ArrayList<String[]> symbolicProgression = new ArrayList<String[]>();
 		
-		final String [][] keySignature = new String [7][3];
+		final String [][] keySignature;
 		
 		if(key == "CMajor")
 		{
-			System.arraycopy(Facts.CMajor, 0, keySignature, 0, 7);
+			keySignature = Facts.CMajor;
 		}
 		else
 		{
-			System.arraycopy(Facts.CMinor, 0, keySignature, 0, 7);
+			keySignature = Facts.CMinor;
 		}		
+	
 		
 		for(int i = 0; i < numericProgression.size(); i++)
 		{

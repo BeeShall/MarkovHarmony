@@ -22,7 +22,6 @@ public class MarkovEngine
 	{
 		System.out.println("Hey time for Markov");
 
-		
 		// Generate nodes and populate map
 		generateNodes();
 		

@@ -1,4 +1,4 @@
-package markovharmony;
+package markovharmony.db;
 import java.util.ArrayList;
 
 public class Chords

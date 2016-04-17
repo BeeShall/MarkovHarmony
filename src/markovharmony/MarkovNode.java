@@ -1,5 +1,5 @@
 package markovharmony;
-import markovharmony.Chords;
+import markovharmony.db.Chords;
 
 public class MarkovNode 
 {

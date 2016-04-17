@@ -1,0 +1,3 @@
+{Cheerleader, OMI, Pop, 2015, United States, [E, E, B, A, E, E, B, A, E, E, B, A, E, E, B, A, E, B, A, E, B, A]}
+{ABCD, LOL, OKay, 2345, United Kingdom, [A, B, E, C, Am, A]}
+{KLMN, OLI, O00ay, 2674, AUstralia, [A, Bm, D, C, Am, A]}

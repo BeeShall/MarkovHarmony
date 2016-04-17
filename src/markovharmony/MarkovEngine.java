@@ -1,6 +1,6 @@
 package markovharmony;
 import markovharmony.MarkovNode;
-import markovharmony.Chords;
+import markovharmony.db.Chords;
 
 public class MarkovEngine 
 {

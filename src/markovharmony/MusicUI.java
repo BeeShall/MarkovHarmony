@@ -1,6 +1,5 @@
 package markovharmony;
 
-
 /**
  * Create the GUI form to allow the user to select their music options
  */
@@ -12,7 +11,10 @@ import javax.swing.*;
 public class MusicUI extends JPanel
                           implements ActionListener {
     JComboBox artistList, genreList, eraList, locationList;
-
+    JRadioButton c1, c2,p4,p8;
+    
+    ButtonGroup chords,phrases; 
+    
     public MusicUI() {
         super(new GridLayout(0,2));
         String[] artists = { "", "The Grateful Dead", "David Bowie", "Beastie Boys", "The Rolling Stones", "Frank Ocean"};
@@ -33,6 +35,19 @@ public class MusicUI extends JPanel
         
         locationList = new JComboBox(locations);
         locationList.setSelectedIndex(0);
+        
+        //set up radio button choices for chords/phrases
+        c1= new JRadioButton("1", true);
+        c2= new JRadioButton("2");
+        chords = new ButtonGroup();
+        chords.add(c1);
+        chords.add(c2);
+        
+        p4= new JRadioButton("4", true);
+        p8= new JRadioButton("8");
+        phrases = new ButtonGroup();
+        phrases.add(p4);
+        phrases.add(p8);
         
         //create the labels for the combo boxes 
         JLabel directions = new JLabel ("Pick your poison or combination of poisons:");
@@ -55,7 +70,7 @@ public class MusicUI extends JPanel
         
         //Lay out 
         add(directions);
-        add(spacer);
+        add(new JLabel(""));
         add(artistLabel);
         add(artistList);
         add(genLabel);
@@ -64,6 +79,14 @@ public class MusicUI extends JPanel
         add(eraList);
         add(locLabel);
         add(locationList);
+        add(new JLabel("Chords Per Measure"));
+        add(new JLabel(""));
+        add(c1);
+        add(c2);
+        add(new JLabel("Phrase Length"));
+        add(spacer);
+        add(p4);
+        add(p8);
         add(submit);
         setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
     }
@@ -91,11 +114,23 @@ public class MusicUI extends JPanel
      
     /** Listens to the combo box. */
     public void actionPerformed(ActionEvent e) {
+        //user input, empty string if it was a blank query
         String artist = artistList.getSelectedItem().toString();
         String genre= genreList.getSelectedItem().toString();
         String era = eraList.getSelectedItem().toString();
         String loc = locationList.getSelectedItem().toString();
-        System.out.println(artist);
+        int chords = 1;
+        int phrases = 4;
+        
+        if(c2.isSelected()){
+            chords = 2;
+        }
+        
+        if(p8.isSelected()){
+          phrases = 8;
+        }
+        
+        System.out.println(chords);
     }
    
     public static void main(String[] args) {
@@ -109,3 +144,7 @@ public class MusicUI extends JPanel
     }
 
 }
+
+
+ 
+

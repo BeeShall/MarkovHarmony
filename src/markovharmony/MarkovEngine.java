@@ -1,12 +1,7 @@
 package markovharmony;
 import markovharmony.MarkovNode;
-import markovharmony.Facts;
 import markovharmony.db.Chords;
-import markovharmony.Facts;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
 import java.util.Random;
 
 
@@ -41,6 +36,8 @@ public class MarkovEngine
 		// Initialize nodes	
 		initializeNodes();
 		
+		System.out.println(m_DartBoard.toString());
+		
 	}
 	
 	private void generateNodes()
@@ -57,11 +54,10 @@ public class MarkovEngine
 	private void generateProbabilities()
 	{		
 		Random rand = new Random();
-		for(int i = 0; i < Facts.ChordList.length; i++)
+		for(int i = 0; i < 7; i++)
 		{
 			m_ProbabilityArray[i] = rand.nextInt(50);
 		}
-
 	}
 	
 	public void populateDartBoard()
@@ -70,7 +66,7 @@ public class MarkovEngine
 		{
 			for(int i = 0; i < m_ProbabilityArray[j]; i++)
 			{
-				m_DartBoard.add(i);
+				m_DartBoard.add(j+1);
 			}
 		}
 	}

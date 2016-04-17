@@ -1,3 +1,5 @@
+package markovharmony;
+
 
 /**
  * Create the GUI form to allow the user to select their music options

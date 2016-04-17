@@ -35,14 +35,15 @@ public class DataInterface {
 		try {
 			MongoDatabase db = DBConnectionManager.getConnection();
 			songs = db.getCollection("Songs");
-		/*	InputStream is = new FileInputStream(new File("data.txt"));
+			InputStream is = new FileInputStream(new File("data.txt"));
 			FileReader fr = new FileReader(is);
 			Collection<dbElement> elements= fr.getElements();
 			for(dbElement element: elements ){
 				if(insertData(element.title,element.artist,element.genre,element.year,element.country, element.mode, element.chords)){
 					System.out.println("Data successfully added!");
 				}
-			}*/
+			}
+			/*
 			Collection<dbElement> els = getAllData();
 			System.out.println(els.size());
 			for(dbElement el: els){
@@ -56,7 +57,7 @@ public class DataInterface {
 					System.out.print(chord+" ");
 				}
 				System.out.println();
-			}
+			}*/
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());

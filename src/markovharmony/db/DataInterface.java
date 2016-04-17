@@ -7,7 +7,7 @@ public class DataInterface {
 	public static void main(String[] args){		
 		try {
 			DBOperations operations = new DBOperations();
-			ArrayList<ArrayList<Integer>> els = operations.getFilteredData("OMI",null,-1,null,"",null);
+			ArrayList<ArrayList<Integer>> els = operations.getFilteredData("OMI",null,null,"",null);
 			for(ArrayList<Integer> el: els){
 				for(Integer chord: el){
 					System.out.print(chord+" ");

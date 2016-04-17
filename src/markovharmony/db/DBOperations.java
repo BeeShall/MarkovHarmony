@@ -88,12 +88,11 @@ public class DBOperations {
 		return returnElements;
 	}
 	
-	public ArrayList<ArrayList<Integer>> getFilteredData(String artist, Genre genre, int year, String country, String era, Mode mode){
+	public ArrayList<ArrayList<Integer>> getFilteredData(String artist, Genre genre, String country, String era, Mode mode){
 		final ArrayList<ArrayList<Integer>> progressions = new ArrayList<ArrayList<Integer>>();
 		Document document = new Document();
 		if(artist!="") document.append("ARTIST", artist);
 		if(genre != Genre.NONE) document.append("GENRE", genre.name());
-		if(year >0) document.append("YEAR", year);
 		if(mode !=  Mode.NONE) document.append("MODE", mode.name());
 		if(era != "") document.append("ERA",era);
 		FindIterable<Document> iterable =songs.find(document);

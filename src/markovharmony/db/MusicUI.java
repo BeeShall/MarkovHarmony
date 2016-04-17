@@ -154,7 +154,7 @@ public class MusicUI extends JPanel
           phrases = 8;
         }
         
-			ArrayList<ArrayList<Integer>> els = operations.getFilteredData(artist, Genre.valueOf(genre.toUpperCase()), -1, "United States", era, Mode.valueOf(mode.toUpperCase())); //artist
+			ArrayList<ArrayList<Integer>> els = operations.getFilteredData(artist, Genre.valueOf(genre.toUpperCase()), loc, era, Mode.valueOf(mode.toUpperCase())); //artist
 			for(ArrayList<Integer> el: els){
 				for(Integer chord: el){
 					System.out.print(chord+" ");

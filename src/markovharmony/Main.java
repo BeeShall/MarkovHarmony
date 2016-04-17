@@ -9,7 +9,7 @@ public class Main
 		ArrayList<Integer> numericProgression =  markovengine.RunEngine();
 		ArrayList<String[]> symbolicProgression = ProgressionTranslator.numeralToSymbol("CMajor", numericProgression);
 		
-		MidiEngine.generateMidiFromProgression();
+		MidiEngine.generateMidiFromProgression(symbolicProgression);
 		
 		
 		System.out.println(numericProgression.toString());

@@ -34,10 +34,10 @@ public class MusicUI extends JPanel
 			System.out.println(ex.getMessage());
 			System.exit(0);
 		}	
-        String[] artists = operations.getArtists();//{ "", "Sia", "OMI", "Taylor Swift", "DNCE", "Walk the Moon"};
-        String[] genres =operations.getGenre();//{"","Rock","Hip_Hop","RandB","Classical","Country","Electronic","Pop"};
-        String[] musicEra =operations.getEra();//{"","Baroque","Classical","Romantic", "20th Century", "Modern"};
-        String[] locations = operations.getLocations();//{"","African", "European", "North American", "Asian", "South American","Australian"};
+        String[] artists = operations.getArtists();
+        String[] genres =operations.getGenre();
+        String[] musicEra =operations.getEra();
+        String[] locations = operations.getLocations();
         
  
         //Create the combo boxes, make automatic blank

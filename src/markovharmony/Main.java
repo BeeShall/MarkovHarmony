@@ -5,8 +5,12 @@ public class Main
 {
 	public static void main(final String [] args)
 	{
-		MarkovEngine engine = new MarkovEngine();
-		ArrayList<Integer> progression =  engine.RunEngine();
+		MarkovEngine markovengine = new MarkovEngine();
+		ArrayList<Integer> progression =  markovengine.RunEngine();
+		
+		
+		
+		
 		
 		System.out.println(progression.toString());
 		

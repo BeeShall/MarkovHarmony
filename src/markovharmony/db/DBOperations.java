@@ -71,8 +71,8 @@ public class DBOperations {
 		return getElements("Era");
 	}
 	
-	private String[] getElements(String elementType){
-		ArrayList<String> elements = new ArrayList<String>();
+	private String[] getElements(final String elementType){
+		final ArrayList<String> elements = new ArrayList<String>();
 		elements.add("");
 		FindIterable<Document> iterable =songs.find();
 		

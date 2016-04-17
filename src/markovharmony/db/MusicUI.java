@@ -17,7 +17,7 @@ public class MusicUI extends JPanel
                           implements ActionListener {
     JComboBox artistList, genreList, eraList, locationList;
     JRadioButton c1, c2,p4,p8,minor,major;
-    
+    static JFrame frame = new JFrame("Markovsky");
     ButtonGroup chords,phrases, minor_major; 
     
     DBOperations operations;
@@ -141,9 +141,8 @@ public class MusicUI extends JPanel
      * Create the GUI and show it. Should be invoked from the
      * event-dispatching thread.
      */
-    private static void createAndShowGUI() {
+    public static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("Markovsky");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         BoxLayout boxLayout = new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS); // top to bottom
         Font font = new Font("Verdana", Font.BOLD, 17);
@@ -187,6 +186,7 @@ public class MusicUI extends JPanel
           phrases = 8;
         }
         
+        
 			ArrayList<ArrayList<Integer>> els = operations.getFilteredData(artist, Genre.valueOf(genre.toUpperCase()), loc, era, Mode.valueOf(mode.toUpperCase())); //artist
 			for(ArrayList<Integer> el: els){
 				for(Integer chord: el){
@@ -202,9 +202,13 @@ public class MusicUI extends JPanel
 				}
 				
 			}
+			endingGUI();
 			
     }
    
+    public void endingGUI(){
+    	JOptionPane.showMessageDialog(frame,"Markovsky has done it again!");
+    }
     
     
     public void Markovsky(ArrayList<ArrayList<Integer>> data, Integer phraseLength, Integer chordsPerMeasure, String mode) throws Exception
@@ -236,7 +240,7 @@ public class MusicUI extends JPanel
     
     
     
-    public static void main(String[] args) 
+ /*   public static void main(String[] args) 
     {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
@@ -245,7 +249,7 @@ public class MusicUI extends JPanel
                 createAndShowGUI();
             }
         });
-    }
+    }*/
 
 }
 

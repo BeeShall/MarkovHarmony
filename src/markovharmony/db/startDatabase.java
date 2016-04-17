@@ -4,7 +4,7 @@ import com.mongodb.client.MongoDatabase;
 
 public class startDatabase {
 
-	public static void main(String[] args) {
+	public static void start() {
 		// TODO Auto-generated method stub
 		try {
 			MongoDatabase db = DBConnectionManager.getConnection();

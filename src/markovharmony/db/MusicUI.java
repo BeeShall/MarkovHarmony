@@ -1,4 +1,5 @@
 package markovharmony.db;
+import markovharmony.*;
 
 
 /**
@@ -172,9 +173,14 @@ public class MusicUI extends JPanel
         String mode = "MINOR";
         
         int phrases = 4;
+        int numChords = 1;
+        
+        if(major.isSelected()){
+        	mode = "MAJOR";
+        }
         
         if(c2.isSelected()){
-            mode = "MAJOR";
+            numChords = 2;
         }
         
         if(p8.isSelected()){
@@ -187,13 +193,51 @@ public class MusicUI extends JPanel
 					System.out.print(chord+" ");
 				}
 				System.out.println();
+				
+				try {
+					Markovsky(els, phrases, numChords, mode);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 			
     }
    
     
     
-    public static void main(String[] args) {
+    public void Markovsky(ArrayList<ArrayList<Integer>> data, Integer phraseLength, Integer chordsPerMeasure, String mode) throws Exception
+    {
+    	
+    	MarkovEngine markovengine = new MarkovEngine();
+		ArrayList<Integer> numericProgression =  markovengine.RunEngine(data, phraseLength, chordsPerMeasure);
+		ArrayList<String[]> symbolicProgression = ProgressionTranslator.numeralToSymbol(mode, numericProgression);
+		
+		MidiEngine midi = new MidiEngine(chordsPerMeasure);
+		midi.generateMidiFromProgression(symbolicProgression);
+		
+		
+		System.out.println(numericProgression.toString());
+		for(int i = 0; i < symbolicProgression.size(); i++)
+		{
+			for(int j = 0; j < symbolicProgression.get(i).length; j++)
+			{
+				System.out.print(symbolicProgression.get(i)[j]);
+			}
+			System.out.println("");
+		}		
+		
+		System.out.println("Program terminating.");
+    	
+    	
+    }
+    
+    
+    
+    
+    public static void main(String[] args) 
+    {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {

@@ -16,7 +16,7 @@ public class FileReader {
 	private InputStream is;
 	private static ArrayList<dbElement> dbElements;
 	
-	public static void main(String[] args){		
+	public static void readFile(){		
 			InputStream is;
 			try {
 				is = new FileInputStream(new File("data.txt"));

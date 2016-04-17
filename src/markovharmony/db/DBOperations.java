@@ -48,8 +48,27 @@ public class DBOperations {
 		iterable.forEach(new Block<Document>() {
 		    @Override
 		    public void apply(final Document document) {
-		       dbElement element = new dbElement();
 		       Collection<Integer> chords = (ArrayList<Integer>)document.get("CHORDS");	
+		       
+		       progressions.add(chords);
+		    }
+		});
+		return progressions;
+	}
+	
+	public Collection<Collection<Integer>> getFilteredData(String artist, Genre genre, int year, String country, Mode mode){
+		Collection<Collection<Integer>> progressions = new ArrayList<Collection<Integer>>();
+		Document document = new Document();
+		if(artist!=null) document.append("ARTIST", artist); 
+		if(genre != null) document.append("GENRE", genre.name()); 
+		if(year >0) document.append("YEAR", year);
+		if(mode != null) document.append("MODE", mode);
+		FindIterable<Document> iterable =songs.find(document);
+		
+		iterable.forEach(new Block<Document>() {
+		    @Override
+		    public void apply(final Document document) {
+		       Collection<Integer> chords = (ArrayList<Integer>)document.get("CHORDS");
 		       
 		       progressions.add(chords);
 		    }

@@ -7,11 +7,11 @@ public class dbElement {
 	public int year;
 	public Mode mode; 
 	public String country;
-	public String[] chords;
+	public Integer[] chords;
 	public dbElement(){
 		
 	}
-	public dbElement(String title, String artist, Genre genre, int year, Mode mode, String country, String[] chords) {
+	public dbElement(String title, String artist, Genre genre, int year, Mode mode, String country, Integer[] chords) {
 		super();
 		this.title = title;
 		this.artist = artist;

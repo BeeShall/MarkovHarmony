@@ -128,8 +128,7 @@ public class MusicUI extends JPanel
         
         if(p8.isSelected()){
           phrases = 8;
-        }
-        
+        }        
         System.out.println(chords);
     }
    

@@ -5,6 +5,7 @@ public class Main
 {
 	public static void main(final String [] args) throws Exception
 	{
+		/*
 		MarkovEngine markovengine = new MarkovEngine();
 		ArrayList<Integer> numericProgression =  markovengine.RunEngine();
 		ArrayList<String[]> symbolicProgression = ProgressionTranslator.numeralToSymbol("CMajor", numericProgression);
@@ -22,6 +23,6 @@ public class Main
 			System.out.println("");
 		}		
 		
-		System.out.println("Program terminating.");
-	}
+		System.out.println("Program terminating."); */
+	} 
 }

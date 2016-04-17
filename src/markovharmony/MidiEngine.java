@@ -5,7 +5,14 @@ import java.util.*;
 
 public class MidiEngine 
 {
-	public static void generateMidiFromProgression(ArrayList<String[]> progression)
+	private Integer contourDivisor;
+	
+	public MidiEngine(Integer chordsPerMeasure)
+	{
+		contourDivisor = chordsPerMeasure;
+	}
+	
+	public void generateMidiFromProgression(ArrayList<String[]> progression)
 	{
 		
 		
@@ -82,7 +89,7 @@ public class MidiEngine
 		
 	}
 	
-	private static void dancePattern(Track track, MidiEvent me, ShortMessage mm, ArrayList<String[]> progression) throws InvalidMidiDataException
+	private void dancePattern(Track track, MidiEvent me, ShortMessage mm, ArrayList<String[]> progression) throws InvalidMidiDataException
 	{
 		
 		int location = 0;
@@ -105,7 +112,7 @@ public class MidiEngine
 			me = new MidiEvent(mm,(long)location);
 			track.add(me);
 			
-			location += 18;
+			location += 18/contourDivisor;
 			
 			mm = new ShortMessage();
 			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[0])[0], 93);
@@ -138,7 +145,7 @@ public class MidiEngine
 			me = new MidiEvent(mm,(long)location);
 			track.add(me);
 			
-			location += 18;
+			location += 18/contourDivisor;
 		
 			mm = new ShortMessage();
 			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[0])[0], 93);
@@ -170,7 +177,7 @@ public class MidiEngine
 			me = new MidiEvent(mm,(long)location);
 			track.add(me);
 			
-			location += 12;
+			location += 12/contourDivisor;
 
 			
 			mm = new ShortMessage();

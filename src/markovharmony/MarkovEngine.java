@@ -1,9 +1,7 @@
 package markovharmony;
 import markovharmony.MarkovNode;
-import markovharmony.Facts;
 import java.util.ArrayList;
-import java.util.Random;
-import markovharmony.db.DBOperations;
+
 
 public class MarkovEngine 
 {
@@ -58,13 +56,16 @@ public class MarkovEngine
 			ProbabilityArray[i] = 0;
 		}
 		
+		System.out.println(rawData.toString());
+		
+		
 		for(int i = 0; i < rawData.size(); i++)
 		{
 			for(int j = 0; j < rawData.get(i).size()-1; j++)
 			{
 				if(node.getID() == rawData.get(i).get(j))
 				{
-					ProbabilityArray[rawData.get(i).get(j+1)]++;
+					ProbabilityArray[rawData.get(i).get(j+1)-1]++;
 				}
 			}
 		}

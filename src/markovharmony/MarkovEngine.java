@@ -8,67 +8,68 @@ import java.util.Random;
 public class MarkovEngine 
 {
 	private MarkovNode [] m_NodeArray;
-	private ArrayList<Integer> m_DartBoard;
-	private Integer [] m_ProbabilityArray; 
-	
+	private ArrayList<Integer> m_CurrentProgression;
+
 	public MarkovEngine()
 	{
 		System.out.println("Markov initialized");
+		m_CurrentProgression = new ArrayList<Integer>();
+		m_NodeArray = new MarkovNode [7];
 	}
 	
-	public void begin()
+	public ArrayList<Integer> RunEngine()
 	{
 		System.out.println("Hey time for Markov");
-		
-		// Generate the probabilities
-		m_ProbabilityArray = new Integer[7];		
-		generateProbabilities();
-		
-		// Populate the dart board
-		m_DartBoard = new ArrayList<Integer>();
-		populateDartBoard();
-		
+
 		
 		// Generate nodes and populate map
-		m_NodeArray = new MarkovNode [7];
 		generateNodes();
 		
 		// Initialize nodes	
 		initializeNodes();
 		
-		System.out.println(m_DartBoard.toString());
-		
+		return getProgression();
+				
 	}
 	
 	private void generateNodes()
 	{		
 		for(int i = 0; i < 7; i++)
 		{	
-			MarkovNode tmp = new MarkovNode(i+1, m_DartBoard);
+			MarkovNode tmp = new MarkovNode(i+1);
 			m_NodeArray[i] = tmp;
 		}
 		
 	}
 
 
-	private void generateProbabilities()
+	private Integer [] generateProbabilities()
 	{		
+		Integer [] ProbabilityArray = new Integer[7];
 		Random rand = new Random();
 		for(int i = 0; i < 7; i++)
 		{
-			m_ProbabilityArray[i] = rand.nextInt(50);
+			ProbabilityArray[i] = rand.nextInt(50);
 		}
+		
+		return ProbabilityArray;
 	}
 	
-	public void populateDartBoard()
+	public ArrayList<Integer> populateDartBoard()
 	{
+		ArrayList<Integer> DartBoard = new ArrayList<Integer>();
+		
+		Integer [] ProbabilityArray = generateProbabilities();
+		
 		for(int j = 0; j < 7; j++)
 		{
-			for(int i = 0; i < m_ProbabilityArray[j]; i++)
+			for(int i = 0; i < ProbabilityArray[j]; i++)
 			{
-				m_DartBoard.add(j+1);
+				DartBoard.add(j+1);
 			}
 		}
+		
+		return DartBoard;
 	}
 	
 	
@@ -76,10 +77,15 @@ public class MarkovEngine
 	{
 		for(int i = 0; i < 7; i++)
 		{
-			m_NodeArray[i].initialize(m_NodeArray);
+			ArrayList<Integer> DartBoard = populateDartBoard();
+			m_NodeArray[i].initialize(m_NodeArray, DartBoard);
 		}
 	}
 	
-	
+
+	private ArrayList<Integer> getProgression()
+	{
+		return ChordGenerator.generateProgression(16, m_NodeArray);	
+	}
 	
 }

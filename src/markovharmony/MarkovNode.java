@@ -1,6 +1,7 @@
 package markovharmony;
 import markovharmony.db.Chords;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MarkovNode 
 {
@@ -9,10 +10,9 @@ public class MarkovNode
 	private ArrayList<Integer> m_DartBoard;
 	private boolean m_isInitialized;
 	
-	public MarkovNode(Integer id, ArrayList<Integer> DartBoard)
+	public MarkovNode(Integer id)
 	{
 		m_ID = id;
-		m_DartBoard = DartBoard;
 		m_isInitialized = false;
 		
 	}
@@ -23,13 +23,20 @@ public class MarkovNode
 	}
 	
 	
-	public void initialize(MarkovNode [] nodeArray)
+	public void initialize(MarkovNode [] nodeArray, ArrayList<Integer> DartBoard)
 	{
 		m_NodeArray = nodeArray;
+		m_DartBoard = DartBoard;
 		
 		m_isInitialized = true;
 	}
 	
+	
+	public MarkovNode getNextChord()
+	{
+		Random rand = new Random();
+		return m_NodeArray[rand.nextInt(7)];
+	}
 	
 	
 	

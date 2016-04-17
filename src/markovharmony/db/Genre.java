@@ -1,5 +1,5 @@
 package markovharmony.db;
 
 public enum Genre {
-	African, Asian, Avant_garde, Blues, Comedy, Country, Easy_listening, Electronic, Folk, Hip_hop, Jazz, Latin, Pop, RANDB, Rock
+	AFRICAN, ASIAN, AVANT_GARDE, BLUES, COMEDY, COUNTRY, EASY_LISTENING, ELECTRONIC, FOLK, HIP_HOP, JAZZ, LATIN, POP, RANDB, ROCK
 }

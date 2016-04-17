@@ -1,5 +1,4 @@
 package markovharmony;
-import markovharmony.db.Chords;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Enumeration;

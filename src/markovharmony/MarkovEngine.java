@@ -1,89 +1,95 @@
 package markovharmony;
 import markovharmony.MarkovNode;
+<<<<<<< HEAD
 import markovharmony.Facts;
+=======
+import markovharmony.db.Chords;
+>>>>>>> 6ec399261684936aee4434413ebd7b3eb1c42030
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
 import java.util.Random;
 
 
 public class MarkovEngine 
 {
-	private Dictionary<String, MarkovNode> m_NodeMap;
-	private ArrayList<String> m_DartBoard;
-	Dictionary<String, Integer> m_ProbabilityMap; 
-	
+	private MarkovNode [] m_NodeArray;
+	private ArrayList<Integer> m_CurrentProgression;
+
 	public MarkovEngine()
 	{
 		System.out.println("Markov initialized");
+		m_CurrentProgression = new ArrayList<Integer>();
+		m_NodeArray = new MarkovNode [7];
 	}
 	
-	public void begin()
+	public ArrayList<Integer> RunEngine()
 	{
 		System.out.println("Hey time for Markov");
-		
-		// Generate the probabilities
-		m_ProbabilityMap = new Hashtable<String, Integer>();		
-		generateProbabilities();
-		
-		// Populate the dart board
-		m_DartBoard = new ArrayList<String>();
-		populateDartBoard();
-		
+
 		
 		// Generate nodes and populate map
-		m_NodeMap = new Hashtable<String, MarkovNode>();
 		generateNodes();
 		
 		// Initialize nodes	
 		initializeNodes();
 		
+		return getProgression();
+				
 	}
 	
 	private void generateNodes()
 	{		
-		for(int i = 0; i < Facts.ChordList.length; i++)
-		{
-			
-			MarkovNode tmp = new MarkovNode(Facts.ChordList[i], m_DartBoard);
-			m_NodeMap.put(Facts.ChordList[i], tmp);
+		for(int i = 0; i < 7; i++)
+		{	
+			MarkovNode tmp = new MarkovNode(i+1);
+			m_NodeArray[i] = tmp;
 		}
 		
 	}
 
 
-	private void generateProbabilities()
+	private Integer [] generateProbabilities()
 	{		
+		Integer [] ProbabilityArray = new Integer[7];
 		Random rand = new Random();
-		for(int i = 0; i < Facts.ChordList.length; i++)
+		for(int i = 0; i < 7; i++)
 		{
-			m_ProbabilityMap.put(Facts.ChordList[i], rand.nextInt(50));
+			ProbabilityArray[i] = rand.nextInt(50);
 		}
-
+		
+		return ProbabilityArray;
 	}
 	
-	public void populateDartBoard()
+	public ArrayList<Integer> populateDartBoard()
 	{
-		for(Enumeration e = m_ProbabilityMap.keys(); e.hasMoreElements(); )
+		ArrayList<Integer> DartBoard = new ArrayList<Integer>();
+		
+		Integer [] ProbabilityArray = generateProbabilities();
+		
+		for(int j = 0; j < 7; j++)
 		{
-			Object tmp = e.nextElement();
-			for(int i = 0; i < m_ProbabilityMap.get(tmp); i++)
+			for(int i = 0; i < ProbabilityArray[j]; i++)
 			{
-				m_DartBoard.add(((String) tmp));
+				DartBoard.add(j+1);
 			}
 		}
+		
+		return DartBoard;
 	}
 	
 	
 	private void initializeNodes()
 	{
-		for(Enumeration e = m_NodeMap.keys(); e.hasMoreElements(); )
+		for(int i = 0; i < 7; i++)
 		{
-			m_NodeMap.get(e.nextElement()).initialize(m_NodeMap);
+			ArrayList<Integer> DartBoard = populateDartBoard();
+			m_NodeArray[i].initialize(m_NodeArray, DartBoard);
 		}
 	}
 	
-	
+
+	private ArrayList<Integer> getProgression()
+	{
+		return ChordGenerator.generateProgression(16, m_NodeArray);	
+	}
 	
 }

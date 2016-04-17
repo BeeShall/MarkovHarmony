@@ -1,5 +1,6 @@
 package markovharmony;
 
+<<<<<<< HEAD
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
@@ -14,4 +15,9 @@ public class DataInterface {
 		        new Document("name","Bishal Regmi")
 		        		.append("Company", "Ramapo"));
 	}
+=======
+public class DataInterface 
+{
+	
+>>>>>>> b27bb35ceb26acf0c31107a7cbae3002c0f4486c
 }

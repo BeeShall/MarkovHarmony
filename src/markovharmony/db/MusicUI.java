@@ -17,10 +17,13 @@ public class MusicUI extends JPanel
     JComboBox artistList, genreList, eraList, locationList;
     JRadioButton c1, c2,p4,p8,minor,major;
     
-    ButtonGroup chords,phrases, minor_major; ; 
+    ButtonGroup chords,phrases, minor_major; 
+    
+    DBOperations operations;
     
     public MusicUI() {
         super(new GridLayout(0,2));
+<<<<<<< HEAD
         Font font = new Font("Verdana", Font.BOLD, 15);
         Font font3 = new Font("Verdana", Font.BOLD, 18);
         Font font2 = new Font("Verdana", Font.BOLD, 37);
@@ -28,6 +31,19 @@ public class MusicUI extends JPanel
         String[] genres ={"","Rock","Hip_Hop","RandB","Classical","Country","Electronic","Pop"};
         String[] musicEra ={"","Baroque","Classical","Romantic", "20th Century", "Modern"};
         String[] locations ={"","African", "European", "North American", "Asian", "South American","Australian"};
+=======
+        try {
+			operations = new DBOperations();
+		} catch (Exception ex) {
+			// TODO Auto-generated catch block
+			System.out.println(ex.getMessage());
+			System.exit(0);
+		}	
+        String[] artists = operations.getArtists();//{ "", "Sia", "OMI", "Taylor Swift", "DNCE", "Walk the Moon"};
+        String[] genres =operations.getGenre();//{"","Rock","Hip_Hop","RandB","Classical","Country","Electronic","Pop"};
+        String[] musicEra =operations.getEra();//{"","Baroque","Classical","Romantic", "20th Century", "Modern"};
+        String[] locations = operations.getLocations();//{"","African", "European", "North American", "Asian", "South American","Australian"};
+>>>>>>> b7e47102819ba7da60619e4709687964b2692c4f
         
  
         //Create the combo boxes, make automatic blank
@@ -152,7 +168,7 @@ public class MusicUI extends JPanel
     
 
      
-    /** Listens to the combo box. */
+	/** Listens to the combo box. */
     public void actionPerformed(ActionEvent e) {
         //user input, empty string if it was a blank query
         String artist = artistList.getSelectedItem().toString();
@@ -172,20 +188,14 @@ public class MusicUI extends JPanel
           phrases = 8;
         }
         
-        try {
-			DBOperations operations = new DBOperations();
-			ArrayList<ArrayList<Integer>> els = operations.getFilteredData(artist, Genre.valueOf(genre.toUpperCase()), -1, "United States", Mode.valueOf(mode.toUpperCase())); //artist
+			ArrayList<ArrayList<Integer>> els = operations.getFilteredData(artist, Genre.valueOf(genre.toUpperCase()), -1, "United States", era, Mode.valueOf(mode.toUpperCase())); //artist
 			for(ArrayList<Integer> el: els){
 				for(Integer chord: el){
 					System.out.print(chord+" ");
 				}
 				System.out.println();
 			}
-		} catch (Exception ex) {
-			// TODO Auto-generated catch block
-			System.out.println(ex.getMessage());
-			System.exit(0);
-		}		
+			
     }
    
     

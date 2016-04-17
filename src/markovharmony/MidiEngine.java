@@ -5,11 +5,22 @@ import java.util.*;
 
 public class MidiEngine 
 {
-	public static void generateMidiFromProgression()
+	private Integer contourDivisor;
+	
+	public MidiEngine(Integer chordsPerMeasure)
 	{
+		contourDivisor = chordsPerMeasure;
+	}
+	
+	public void generateMidiFromProgression(ArrayList<String[]> progression)
+	{
+		
+		
 		try
 		{
 			System.out.println("Beginning MIDI creation...");
+			
+			// Formalities
 			
 			Sequence sequence = new Sequence(javax.sound.midi.Sequence.PPQ,24);
 			Track track = sequence.createTrack();
@@ -47,15 +58,19 @@ public class MidiEngine
 			me = new MidiEvent(mm,(long)0);
 			track.add(me);
 
-			mm = new ShortMessage();
-			mm.setMessage(0x90,0x3C,0x60);
-			me = new MidiEvent(mm,(long)1);
+			// Dance track
+			
+			dancePattern(track, me, mm, progression);
+			
+			
+			// Set end of track
+			
+			mt = new MetaMessage();
+	        byte[] bet = {}; // empty array
+			mt.setMessage(0x2F,bet,0);
+			me = new MidiEvent(mt, (long)140);
 			track.add(me);
 			
-			mm = new ShortMessage();
-			mm.setMessage(0x80,0x3C,0x40);
-			me = new MidiEvent(mm,(long)121);
-			track.add(me);
 			
 			File f = new File("midifile.mid");
 			MidiSystem.write(sequence,1,f);
@@ -74,7 +89,118 @@ public class MidiEngine
 		
 	}
 	
-	
+	private void dancePattern(Track track, MidiEvent me, ShortMessage mm, ArrayList<String[]> progression) throws InvalidMidiDataException
+	{
+		
+		int location = 0;
+		NoteMap notemap = new NoteMap();
+		
+		for(int i = 0; i < progression.size(); i++)
+		{
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_ON, 0, notemap.Notes.get(progression.get(i)[0])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_ON, 0, notemap.Notes.get(progression.get(i)[1])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_ON, 0, notemap.Notes.get(progression.get(i)[2])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			location += 18/contourDivisor;
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[0])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[1])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[2])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+						
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_ON, 0, notemap.Notes.get(progression.get(i)[0])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_ON, 0, notemap.Notes.get(progression.get(i)[1])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_ON, 0, notemap.Notes.get(progression.get(i)[2])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			location += 18/contourDivisor;
+		
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[0])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[1])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[2])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);	
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_ON, 0, notemap.Notes.get(progression.get(i)[0])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_ON, 0, notemap.Notes.get(progression.get(i)[1])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_ON, 0, notemap.Notes.get(progression.get(i)[2])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			location += 12/contourDivisor;
+
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[0])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[1])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+			
+			mm = new ShortMessage();
+			mm.setMessage(ShortMessage.NOTE_OFF, 0, notemap.Notes.get(progression.get(i)[2])[0], 93);
+			me = new MidiEvent(mm,(long)location);
+			track.add(me);
+						
+			
+			
+		}
+
+		
+	}
 	
 	
 	

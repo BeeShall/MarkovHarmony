@@ -9,7 +9,7 @@ public class ProgressionTranslator
 		
 		final String [][] keySignature;
 		
-		if(key == "CMajor")
+		if(key == "MAJOR")
 		{
 			keySignature = Facts.CMajor;
 		}

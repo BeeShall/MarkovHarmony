@@ -9,7 +9,8 @@ public class MarkovEngine
 {
 	private MarkovNode [] m_NodeArray;
 	private ArrayList<Integer> m_CurrentProgression;
-
+	private ArrayList<ArrayList<Integer>> rawData;
+	
 	public MarkovEngine()
 	{
 		System.out.println("Markov initialized");
@@ -24,6 +25,9 @@ public class MarkovEngine
 		
 		// Generate nodes and populate map
 		generateNodes();
+		
+		// Load in data	
+		loadInData();
 		
 		// Initialize nodes	
 		initializeNodes();
@@ -43,23 +47,33 @@ public class MarkovEngine
 	}
 
 
-	private Integer [] generateProbabilities()
+	private Integer [] generateProbabilities(MarkovNode node)
 	{		
 		Integer [] ProbabilityArray = new Integer[7];
-		Random rand = new Random();
 		for(int i = 0; i < 7; i++)
 		{
-			ProbabilityArray[i] = rand.nextInt(50);
+			ProbabilityArray[i] = 0;
+		}
+		
+		for(int i = 0; i < rawData.size(); i++)
+		{
+			for(int j = 0; j < rawData.get(i).size()-1; j++)
+			{
+				if(node.getID() == rawData.get(i).get(j))
+				{
+					ProbabilityArray[rawData.get(i).get(j+1)]++;
+				}
+			}
 		}
 		
 		return ProbabilityArray;
 	}
 	
-	public ArrayList<Integer> populateDartBoard()
+	public ArrayList<Integer> populateDartBoard(MarkovNode node)
 	{
 		ArrayList<Integer> DartBoard = new ArrayList<Integer>();
 		
-		Integer [] ProbabilityArray = generateProbabilities();
+		Integer [] ProbabilityArray = generateProbabilities(node);
 		
 		for(int j = 0; j < 7; j++)
 		{
@@ -77,7 +91,7 @@ public class MarkovEngine
 	{
 		for(int i = 0; i < 7; i++)
 		{
-			ArrayList<Integer> DartBoard = populateDartBoard();
+			ArrayList<Integer> DartBoard = populateDartBoard(m_NodeArray[i]);
 			m_NodeArray[i].initialize(m_NodeArray, DartBoard);
 		}
 	}
@@ -87,5 +101,20 @@ public class MarkovEngine
 	{
 		return ChordGenerator.generateProgression(16, m_NodeArray);	
 	}
+	
+	
+	private void loadInData()
+	{
+		rawData = new ArrayList<ArrayList<Integer>>();
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 }

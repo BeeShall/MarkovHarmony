@@ -77,14 +77,14 @@ public class FileReader {
 		return element;
 	}
 	
-	private String[] getChords(String[] data){
-		Collection<String> chords = new ArrayList<String>();
+	private Integer[] getChords(String[] data){
+		Collection<Integer> chords = new ArrayList<Integer>();
 		for(int i=0;i<data.length;i++){
-			if(i ==0) chords.add(data[i].trim().substring(1));
-			else if(i==data.length-1) chords.add(data[i].trim().substring(0, data[i].length()-2));
-			else chords.add(data[i].trim());
+			if(i ==0) chords.add(Integer.parseInt((data[i].trim().substring(1))));
+			else if(i==data.length-1) chords.add(Integer.parseInt((data[i].trim().substring(0, data[i].length()-2))));
+			else chords.add(Integer.parseInt((data[i].trim())));
 		}
-		String[] returnChords = new String[chords.size()];
+		Integer[] returnChords = new Integer[chords.size()];
 		chords.toArray(returnChords);
 		
 		return returnChords;

@@ -25,10 +25,10 @@ public class DBOperations {
 	}
 	}
 	
-	public boolean insertData(String title, String artist, Genre genre, int year, String country, Mode mode, String[] chords){
+	public boolean insertData(String title, String artist, Genre genre, int year, String country, Mode mode, Integer[] chords){
 		try{			
 			BasicDBList chordsList = new BasicDBList();
-			for(String chord: chords){
+			for(Integer chord: chords){
 				chordsList.add(chord);
 			}
 			songs.insertOne(new Document().append("TITLE", title).append("ARTIST", artist).append("GENRE", genre.name()).append("YEAR", year)
@@ -42,28 +42,19 @@ public class DBOperations {
 		}		
 	}
 	
-	public Collection<dbElement> getAllData(){
-		Collection<dbElement> elements = new ArrayList<dbElement>();
+	public Collection<Collection<Integer>> getAllProgressions(){
+		Collection<Collection<Integer>> progressions = new ArrayList<Collection<Integer>>();
 		FindIterable<Document> iterable = songs.find();
 		iterable.forEach(new Block<Document>() {
 		    @Override
 		    public void apply(final Document document) {
 		       dbElement element = new dbElement();
-		       element.artist = document.getString("ARTIST");
-		       element.title = document.getString("TITLE");
-		       element.genre = Genre.valueOf(document.getString("GENRE"));
-		       element.year = document.getInteger("YEAR");
-		       element.mode = Mode.valueOf(document.getString("MODE"));
-		       element.country = document.getString("COUNTRY");
-		       Collection<String> chords = (ArrayList<String>)document.get("CHORDS");
-		       String[] retreivedChords = new String[chords.size()];
-		       chords.toArray(retreivedChords);
-		       element.chords = retreivedChords;	
+		       Collection<Integer> chords = (ArrayList<Integer>)document.get("CHORDS");	
 		       
-		       elements.add(element);
+		       progressions.add(chords);
 		    }
 		});
-		return elements;
+		return progressions;
 	}
 
 }

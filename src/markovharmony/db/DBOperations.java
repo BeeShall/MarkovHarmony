@@ -42,7 +42,7 @@ public class DBOperations {
 	}
 	
 	public ArrayList<ArrayList<Integer>> getAllProgressions(){
-		ArrayList<ArrayList<Integer>> progressions = new ArrayList<ArrayList<Integer>>();
+		final ArrayList<ArrayList<Integer>> progressions = new ArrayList<ArrayList<Integer>>();
 		FindIterable<Document> iterable = songs.find();
 		iterable.forEach(new Block<Document>() {
 		    @Override
@@ -56,7 +56,7 @@ public class DBOperations {
 	}
 	
 	public ArrayList<ArrayList<Integer>> getFilteredData(String artist, Genre genre, int year, String country, Mode mode){
-		ArrayList<ArrayList<Integer>> progressions = new ArrayList<ArrayList<Integer>>();
+		final ArrayList<ArrayList<Integer>> progressions = new ArrayList<ArrayList<Integer>>();
 		Document document = new Document();
 		if(artist!=null) document.append("ARTIST", artist); 
 		if(genre != null) document.append("GENRE", genre.name()); 

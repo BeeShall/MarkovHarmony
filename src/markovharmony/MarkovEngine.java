@@ -1,6 +1,8 @@
 package markovharmony;
 import markovharmony.MarkovNode;
 import markovharmony.Facts;
+import markovharmony.db.Chords;
+import markovharmony.Facts;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;

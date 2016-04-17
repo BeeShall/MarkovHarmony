@@ -1,10 +1,7 @@
 package markovharmony;
 import markovharmony.MarkovNode;
-<<<<<<< HEAD
 import markovharmony.Facts;
-=======
 import markovharmony.db.Chords;
->>>>>>> 6ec399261684936aee4434413ebd7b3eb1c42030
 import java.util.ArrayList;
 import java.util.Random;
 

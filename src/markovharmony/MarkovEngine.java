@@ -10,6 +10,7 @@ public class MarkovEngine
 	private MarkovNode [] m_NodeArray;
 	private ArrayList<Integer> m_CurrentProgression;
 	private ArrayList<ArrayList<Integer>> rawData;
+	private Integer m_numChords;
 	
 	public MarkovEngine()
 	{
@@ -18,15 +19,18 @@ public class MarkovEngine
 		m_NodeArray = new MarkovNode [7];
 	}
 	
-	public ArrayList<Integer> RunEngine() throws Exception
+	public ArrayList<Integer> RunEngine(ArrayList<ArrayList<Integer>> data, Integer phraseLength, Integer chordsPerMeasure) throws Exception
 	{
-		System.out.println("Hey time for Markov");
+		System.out.println("Hey time for Markovsky to play");
 
+		// Calculate numChords
+		m_numChords = phraseLength * chordsPerMeasure;
+		
 		// Generate nodes and populate map
 		generateNodes();
 		
 		// Load in data	
-		loadInData();
+		rawData = data;
 		
 		// Initialize nodes	
 		initializeNodes();
@@ -98,18 +102,9 @@ public class MarkovEngine
 
 	private ArrayList<Integer> getProgression()
 	{
-		return ChordGenerator.generateProgression(16, m_NodeArray);	
+		return ChordGenerator.generateProgression(m_numChords, m_NodeArray);	
 	}
-	
-	
-	private void loadInData() throws Exception
-	{
-		rawData = new ArrayList<ArrayList<Integer>>();
-		
-		DBOperations db = new DBOperations();
-		rawData = db.getAllProgressions();
-		System.out.println(rawData.toString());
-	}
+
 	
 	
 	

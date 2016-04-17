@@ -71,8 +71,8 @@ public class DBOperations {
 		return getElements("Era");
 	}
 	
-	private String[] getElements(String elementType){
-		ArrayList<String> elements = new ArrayList<String>();
+	private String[] getElements(final String elementType){
+		final ArrayList<String> elements = new ArrayList<String>();
 		elements.add("");
 		FindIterable<Document> iterable =songs.find();
 		
@@ -93,8 +93,16 @@ public class DBOperations {
 		Document document = new Document();
 		if(artist!="") document.append("ARTIST", artist);
 		if(genre != Genre.NONE) document.append("GENRE", genre.name());
+<<<<<<< HEAD
+=======
+		if(year >0) document.append("YEAR", year);
+<<<<<<< HEAD
+		document.append("MODE", mode.name());
+=======
+>>>>>>> d5dac6c1deb06d04d52df0fbca191d694fbc43b3
 		if(mode !=  Mode.NONE) document.append("MODE", mode.name());
 		if(era != "") document.append("ERA",era);
+>>>>>>> b7e47102819ba7da60619e4709687964b2692c4f
 		FindIterable<Document> iterable =songs.find(document);
 		
 		iterable.forEach(new Block<Document>() {

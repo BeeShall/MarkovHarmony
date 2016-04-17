@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
+
+
  
 
 public class MusicUI extends JPanel
@@ -21,6 +23,15 @@ public class MusicUI extends JPanel
     
     public MusicUI() {
         super(new GridLayout(0,2));
+<<<<<<< HEAD
+        Font font = new Font("Verdana", Font.BOLD, 15);
+        Font font3 = new Font("Verdana", Font.BOLD, 18);
+        Font font2 = new Font("Verdana", Font.BOLD, 37);
+        String[] artists = { "", "Sia", "OMI", "Taylor Swift", "DNCE", "Walk the Moon"};
+        String[] genres ={"","Rock","Hip_Hop","RandB","Classical","Country","Electronic","Pop"};
+        String[] musicEra ={"","Baroque","Classical","Romantic", "20th Century", "Modern"};
+        String[] locations ={"","African", "European", "North American", "Asian", "South American","Australian"};
+=======
         try {
 			operations = new DBOperations();
 		} catch (Exception ex) {
@@ -32,6 +43,7 @@ public class MusicUI extends JPanel
         String[] genres =operations.getGenre();//{"","Rock","Hip_Hop","RandB","Classical","Country","Electronic","Pop"};
         String[] musicEra =operations.getEra();//{"","Baroque","Classical","Romantic", "20th Century", "Modern"};
         String[] locations = operations.getLocations();//{"","African", "European", "North American", "Asian", "South American","Australian"};
+>>>>>>> b7e47102819ba7da60619e4709687964b2692c4f
         
  
         //Create the combo boxes, make automatic blank
@@ -67,25 +79,44 @@ public class MusicUI extends JPanel
         minor_major.add(major);
         
         //create the labels for the combo boxes 
+        JLabel header = new JLabel ("         MARKOVSKY");
+        header.setFont(font2);
         JLabel directions = new JLabel ("Pick your poison or combination of poisons:");
+        directions.setFont(font3);
         JLabel spacer = new JLabel("");
         
         JLabel artistLabel = new JLabel();
         artistLabel.setText("Artist");
+        artistLabel.setFont(font);
         
         JLabel genLabel= new JLabel();
         genLabel.setText("Genre");
+        genLabel.setFont(font);
         
         JLabel eraLabel= new JLabel();
         eraLabel.setText("Era");
+        eraLabel.setFont(font);
         
         JLabel locLabel= new JLabel();
         locLabel.setText("Location");
+        locLabel.setFont(font);
+        
+        JLabel chords = new JLabel("Chords Per Measure");
+        chords.setFont(font);
+        
+        JLabel phr = new JLabel("Phrase Length");
+        phr.setFont(font);
+        
+        JLabel maj = new JLabel("Mode");
+        maj.setFont(font);
         
         JButton submit = new JButton("Make me something beautiful");
         submit.addActionListener(this);
         
         //Lay out 
+        
+        add(new JLabel(""));
+        add(header);
         add(directions);
         add(new JLabel(""));
         add(artistLabel);
@@ -96,15 +127,15 @@ public class MusicUI extends JPanel
         add(eraList);
         add(locLabel);
         add(locationList);
-        add(new JLabel("Chords Per Measure"));
+        add(chords);
         add(new JLabel(""));
         add(c1);
         add(c2);
-        add(new JLabel("Phrase Length"));
+        add(phr);
         add(spacer);
         add(p4);
         add(p8);
-        add(new JLabel("Chords Progression"));
+        add(maj);
         add(new JLabel(""));
         add(minor);
         add(major);
@@ -121,12 +152,15 @@ public class MusicUI extends JPanel
         JFrame frame = new JFrame("Markovsky");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         BoxLayout boxLayout = new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS); // top to bottom
-  
+        Font font = new Font("Verdana", Font.BOLD, 17);
+        
         //Create and set up the content pane.
         JComponent newContentPane = new MusicUI();
+        newContentPane.setBackground(Color.WHITE);
+        newContentPane.setFont(font);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
- 
+
         //Display the window.
         frame.pack();
         frame.setVisible(true);
@@ -143,7 +177,7 @@ public class MusicUI extends JPanel
         String era = eraList.getSelectedItem().toString();
         String loc = locationList.getSelectedItem().toString();
         String mode = "MINOR";
-        if(mode == "") genre = "none";
+        
         int phrases = 4;
         
         if(c2.isSelected()){

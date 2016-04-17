@@ -26,7 +26,7 @@ public class FileReader {
 				try {
 					DBOperations operations = new DBOperations();
 					for(dbElement element: dbElements ){
-						if(operations.insertData(element.title,element.artist,element.genre,element.year,element.country, element.mode, element.chords)){
+						if(operations.insertData(element.title,element.artist,element.genre,element.year,element.country, element.mode, element.era, element.chords)){
 							System.out.println("Data successfully added!");
 						}
 					}
@@ -73,7 +73,8 @@ public class FileReader {
 		element.year = Integer.parseInt(subElements[3].trim());
 		element.country = subElements[4].trim();
 		element.mode = Mode.valueOf(subElements[5].trim().toUpperCase());
-		element.chords = getChords(Arrays.copyOfRange(subElements, 6, subElements.length));
+		element.era = subElements[6].trim();
+		element.chords = getChords(Arrays.copyOfRange(subElements, 7, subElements.length));
 		return element;
 	}
 	

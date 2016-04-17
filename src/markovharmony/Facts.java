@@ -46,6 +46,13 @@ public class Facts
 				Fs, Fsm, Gs, Gsm, As, Asm
 		};
 	
+	public static final String [] CMajor = 
+		{
+				C, Dm, Em, F, G, Am, Bm
+		};
 	
-	
+	public static final String [] CMinor = 
+		{
+				Cm, Dm, Eb, Fm, Gm, Ab, Bb
+		};
 }

@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class MarkovNode 
 {
-	private String m_ID;
-	private Dictionary<String, MarkovNode> m_NodeMap;
-	private ArrayList<String> m_DartBoard;
+	private Integer m_ID;
+	private MarkovNode [] m_NodeArray;
+	private ArrayList<Integer> m_DartBoard;
 	private boolean m_isInitialized;
 	
-	public MarkovNode(String id, ArrayList<String> DartBoard)
+	public MarkovNode(Integer id, ArrayList<Integer> DartBoard)
 	{
 		m_ID = id;
 		m_DartBoard = DartBoard;
@@ -20,15 +20,15 @@ public class MarkovNode
 		
 	}
 	
-	public String getID()
+	public Integer getID()
 	{
 		return m_ID;
 	}
 	
 	
-	public void initialize(Dictionary<String, MarkovNode> nodeMap)
+	public void initialize(MarkovNode [] nodeArray)
 	{
-		m_NodeMap = nodeMap;
+		m_NodeArray = nodeArray;
 		
 		m_isInitialized = true;
 	}

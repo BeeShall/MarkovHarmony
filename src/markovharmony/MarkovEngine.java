@@ -12,9 +12,9 @@ import java.util.Random;
 
 public class MarkovEngine 
 {
-	private Dictionary<String, MarkovNode> m_NodeMap;
-	private ArrayList<String> m_DartBoard;
-	Dictionary<String, Integer> m_ProbabilityMap; 
+	private MarkovNode [] m_NodeArray;
+	private ArrayList<Integer> m_DartBoard;
+	private Integer [] m_ProbabilityArray; 
 	
 	public MarkovEngine()
 	{
@@ -26,16 +26,16 @@ public class MarkovEngine
 		System.out.println("Hey time for Markov");
 		
 		// Generate the probabilities
-		m_ProbabilityMap = new Hashtable<String, Integer>();		
+		m_ProbabilityArray = new Integer[7];		
 		generateProbabilities();
 		
 		// Populate the dart board
-		m_DartBoard = new ArrayList<String>();
+		m_DartBoard = new ArrayList<Integer>();
 		populateDartBoard();
 		
 		
 		// Generate nodes and populate map
-		m_NodeMap = new Hashtable<String, MarkovNode>();
+		m_NodeArray = new MarkovNode [7];
 		generateNodes();
 		
 		// Initialize nodes	
@@ -45,11 +45,10 @@ public class MarkovEngine
 	
 	private void generateNodes()
 	{		
-		for(int i = 0; i < Facts.ChordList.length; i++)
-		{
-			
-			MarkovNode tmp = new MarkovNode(Facts.ChordList[i], m_DartBoard);
-			m_NodeMap.put(Facts.ChordList[i], tmp);
+		for(int i = 0; i < 7; i++)
+		{	
+			MarkovNode tmp = new MarkovNode(i+1, m_DartBoard);
+			m_NodeArray[i] = tmp;
 		}
 		
 	}
@@ -60,19 +59,18 @@ public class MarkovEngine
 		Random rand = new Random();
 		for(int i = 0; i < Facts.ChordList.length; i++)
 		{
-			m_ProbabilityMap.put(Facts.ChordList[i], rand.nextInt(50));
+			m_ProbabilityArray[i] = rand.nextInt(50);
 		}
 
 	}
 	
 	public void populateDartBoard()
 	{
-		for(Enumeration e = m_ProbabilityMap.keys(); e.hasMoreElements(); )
+		for(int j = 0; j < 7; j++)
 		{
-			Object tmp = e.nextElement();
-			for(int i = 0; i < m_ProbabilityMap.get(tmp); i++)
+			for(int i = 0; i < m_ProbabilityArray[j]; i++)
 			{
-				m_DartBoard.add(((String) tmp));
+				m_DartBoard.add(i);
 			}
 		}
 	}
@@ -80,9 +78,9 @@ public class MarkovEngine
 	
 	private void initializeNodes()
 	{
-		for(Enumeration e = m_NodeMap.keys(); e.hasMoreElements(); )
+		for(int i = 0; i < 7; i++)
 		{
-			m_NodeMap.get(e.nextElement()).initialize(m_NodeMap);
+			m_NodeArray[i].initialize(m_NodeArray);
 		}
 	}
 	

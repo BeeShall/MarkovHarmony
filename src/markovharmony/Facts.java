@@ -1,7 +1,7 @@
 package markovharmony;
 import java.util.ArrayList;
 
-public class Chords
+public class Facts
 {
 	public static final String C = "C";
 	public static final String Cm = "Cm";

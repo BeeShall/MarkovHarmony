@@ -20,7 +20,7 @@ public class MusicUI extends JPanel
     public MusicUI() {
         super(new GridLayout(0,2));
         String[] artists = { "", "Sia", "OMI", "Taylor Swift", "DNCE", "Walk the Moon"};
-        String[] genres ={"","Rock","Hip-Hop","R&B","Classical","Country","Electronic","Pop"};
+        String[] genres ={"","Rock","Hip_Hop","RandB","Classical","Country","Electronic","Pop"};
         String[] musicEra ={"","Baroque","Classical","Romantic", "20th Century", "Modern"};
         String[] locations ={"","African", "European", "North American", "Asian", "South American","Australian"};
         
@@ -130,9 +130,11 @@ public class MusicUI extends JPanel
         //user input, empty string if it was a blank query
         String artist = artistList.getSelectedItem().toString();
         String genre= genreList.getSelectedItem().toString();
+        if(genre == "") genre = "none";
         String era = eraList.getSelectedItem().toString();
         String loc = locationList.getSelectedItem().toString();
         String mode = "MINOR";
+        if(mode == "") genre = "none";
         int phrases = 4;
         
         if(c2.isSelected()){
@@ -145,8 +147,7 @@ public class MusicUI extends JPanel
         
         try {
 			DBOperations operations = new DBOperations();
-			System.out.println( Mode.valueOf(mode.toUpperCase()));
-			ArrayList<ArrayList<Integer>> els = operations.getFilteredData(artist, Genre.POP, -1, "United States", Mode.valueOf(mode.toUpperCase())); //artist
+			ArrayList<ArrayList<Integer>> els = operations.getFilteredData(artist, Genre.valueOf(genre.toUpperCase()), -1, "United States", Mode.valueOf(mode.toUpperCase())); //artist
 			for(ArrayList<Integer> el: els){
 				for(Integer chord: el){
 					System.out.print(chord+" ");

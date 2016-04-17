@@ -19,10 +19,10 @@ public class MusicUI extends JPanel
     
     public MusicUI() {
         super(new GridLayout(0,2));
-        String[] artists = { null, "Sia", "OMI", "Taylor Swift", "DNCE", "Walk the Moon"};
-        String[] genres ={null,"Rock","Hip-Hop","R&B","Classical","Country","Electronic","Pop"};
-        String[] musicEra ={null,"Baroque","Classical","Romantic", "20th Century", "Modern"};
-        String[] locations ={null,"African", "European", "North American", "Asian", "South American","Australian"};
+        String[] artists = { "", "Sia", "OMI", "Taylor Swift", "DNCE", "Walk the Moon"};
+        String[] genres ={"","Rock","Hip-Hop","R&B","Classical","Country","Electronic","Pop"};
+        String[] musicEra ={"","Baroque","Classical","Romantic", "20th Century", "Modern"};
+        String[] locations ={"","African", "European", "North American", "Asian", "South American","Australian"};
         
  
         //Create the combo boxes, make automatic blank

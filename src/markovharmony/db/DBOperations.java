@@ -61,7 +61,7 @@ public class DBOperations {
 		if(artist!="") document.append("ARTIST", artist);
 		if(genre != Genre.NONE) document.append("GENRE", genre.name());
 		if(year >0) document.append("YEAR", year);
-		if(mode !=  Mode.NONE) document.append("MODE", mode.name());
+		document.append("MODE", mode.name());
 		FindIterable<Document> iterable =songs.find(document);
 		
 		iterable.forEach(new Block<Document>() {

@@ -42,14 +42,14 @@ public class DBOperations {
 		}		
 	}
 	
-	public Collection<Collection<Integer>> getAllProgressions(){
-		Collection<Collection<Integer>> progressions = new ArrayList<Collection<Integer>>();
+	public ArrayList<ArrayList<Integer>> getAllProgressions(){
+		final ArrayList<ArrayList<Integer>> progressions = new ArrayList<ArrayList<Integer>>();
 		FindIterable<Document> iterable = songs.find();
 		iterable.forEach(new Block<Document>() {
 		    @Override
 		    public void apply(final Document document) {
 		       dbElement element = new dbElement();
-		       Collection<Integer> chords = (ArrayList<Integer>)document.get("CHORDS");	
+		       ArrayList<Integer> chords = (ArrayList<Integer>)document.get("CHORDS");	
 		       
 		       progressions.add(chords);
 		    }

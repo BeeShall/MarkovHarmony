@@ -3,7 +3,7 @@ import markovharmony.MarkovNode;
 import markovharmony.Facts;
 import java.util.ArrayList;
 import java.util.Random;
-
+import markovharmony.db.DBOperations;
 
 public class MarkovEngine 
 {
@@ -18,7 +18,7 @@ public class MarkovEngine
 		m_NodeArray = new MarkovNode [7];
 	}
 	
-	public ArrayList<Integer> RunEngine()
+	public ArrayList<Integer> RunEngine() throws Exception
 	{
 		System.out.println("Hey time for Markov");
 
@@ -103,14 +103,13 @@ public class MarkovEngine
 	}
 	
 	
-	private void loadInData()
+	private void loadInData() throws Exception
 	{
 		rawData = new ArrayList<ArrayList<Integer>>();
 		
-		
-		
-		
-		
+		DBOperations db = new DBOperations();
+		rawData = db.getAllProgressions();
+		System.out.println(rawData.toString());
 	}
 	
 	

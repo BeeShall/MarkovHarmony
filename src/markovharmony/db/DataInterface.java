@@ -1,14 +1,14 @@
 package markovharmony.db;
 
 
-import java.util.Collection;
+import java.util.ArrayList;
 public class DataInterface {
 		
 	public static void main(String[] args){		
 		try {
 			DBOperations operations = new DBOperations();
-			Collection<Collection<Integer>> els = operations.getAllProgressions();
-			for(Collection<Integer> el: els){
+			ArrayList<ArrayList<Integer>> els = operations.getAllProgressions();
+			for(ArrayList<Integer> el: els){
 				for(Integer chord: el){
 					System.out.print(chord+" ");
 				}

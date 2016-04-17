@@ -145,6 +145,7 @@ public class MusicUI extends JPanel
         
         try {
 			DBOperations operations = new DBOperations();
+			System.out.println( Mode.valueOf(mode.toUpperCase()));
 			ArrayList<ArrayList<Integer>> els = operations.getFilteredData(artist, Genre.POP, -1, "United States", Mode.valueOf(mode.toUpperCase())); //artist
 			for(ArrayList<Integer> el: els){
 				for(Integer chord: el){

@@ -1,6 +1,9 @@
 package markovharmony.db;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8,37 +11,44 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+
+
 public class FileReader {
 
 	private InputStream is;
-	private Collection<dbElement> dbElements;
+	private static Collection<dbElement> dbElements;
+	
+	public static void main(String[] args){		
+			InputStream is;
+			try {
+				is = new FileInputStream(new File("data.txt"));
+				FileReader fr = new FileReader(is);				
+				try {
+					DBOperations operations = new DBOperations();
+					for(dbElement element: dbElements ){
+						if(operations.insertData(element.title,element.artist,element.genre,element.year,element.country, element.mode, element.chords)){
+							System.out.println("Data successfully added!");
+						}
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+					System.exit(0);
+				}				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+	}	
 
 	
-		public FileReader(InputStream is){
+		public FileReader(InputStream is){			
 			this.is = is;
 			dbElements = new ArrayList<dbElement>();
 			readElements();
 		}
 		
-		public void printElements(){
-			for(dbElement e: dbElements){
-				System.out.println(e.artist);
-				System.out.println(e.country);
-				System.out.println(e.title);
-				System.out.println(e.year);
-				System.out.println(e.genre);
-				System.out.println(e.mode);
-				for(String chord: e.chords){
-					System.out.print(chord+" ");
-				}
-				System.out.println();
-			}
-		}
-
-	
-	public Collection<dbElement> getElements() {
-		return dbElements;
-	}
 
 		
 	private void readElements() {
@@ -72,7 +82,7 @@ public class FileReader {
 		for(int i=0;i<data.length;i++){
 			if(i ==0) chords.add(data[i].trim().substring(1));
 			else if(i==data.length-1) chords.add(data[i].trim().substring(0, data[i].length()-2));
-			else chords.add(data[i]);
+			else chords.add(data[i].trim());
 		}
 		String[] returnChords = new String[chords.size()];
 		chords.toArray(returnChords);

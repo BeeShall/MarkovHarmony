@@ -10,4 +10,5 @@ HackRU 1st Place
 -------------------------------------------------------
 
 Best, 
-Ram'po
+
+Ramapo College 

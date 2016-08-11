@@ -12,7 +12,10 @@ HackRU 1st Place
 Best, 
 
 Nathaniel Moon
+
 Haley Wight
+
 Bishal Regmi
+
 
 Hackers of Ramapo College 
